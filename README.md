@@ -169,3 +169,6 @@ A linguagem Cobalt pode ser expandida no futuro com:
 *   Sistema de módulos e importações.
 *   Tratamento de exceções.
 *   Otimizações no compilador e na VM.
+## 7. Realce de Sintaxe (MT Manager)
+
+O arquivo `cobalt.mtsx` fornece realce de sintaxe para o MT Manager. Para instalar, basta abrir o arquivo no MT Manager e seguir as instruções.

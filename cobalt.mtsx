@@ -1,0 +1,71 @@
+{
+    name: "Cobalt",
+    extensions: [".cobalt"],
+    styles: [
+        {name: "keyword", style: "#FF7F50", bold: true},
+        {name: "type", style: "#00CED1", bold: true},
+        {name: "string", style: "#32CD32"},
+        {name: "comment", style: "#808080", italic: true},
+        {name: "number", style: "#FFD700"},
+        {name: "operator", style: "#FF4500"},
+        {name: "function", style: "#1E90FF", bold: true},
+        {name: "identifier", style: "#F0F8FF"},
+        {name: "bracket", style: "#FFD700"}
+    ],
+    contains: [
+        // Comentários de múltiplas linhas
+        {start: /\/\*/, end: /\*\//, style: "comment"},
+        
+        // Comentários de linha única
+        {match: /\/\/.*/, 0: "comment"},
+        
+        // Strings
+        {match: /"[^"]*"/, 0: "string"},
+        
+        // Palavras-chave
+        {
+            match: keywordsToRegex(
+                "var const func if then else end while do return begin print"
+            ),
+            0: "keyword"
+        },
+        
+        // Tipos primitivos
+        {
+            match: keywordsToRegex(
+                "int float bool string void"
+            ),
+            0: "type"
+        },
+        
+        // Booleanos
+        {
+            match: keywordsToRegex(
+                "true false"
+            ),
+            0: "keyword"
+        },
+        
+        // Operadores Lógicos
+        {
+            match: keywordsToRegex(
+                "and or not"
+            ),
+            0: "operator"
+        },
+        
+        // Números (inteiros e floats)
+        {number: "number"},
+        
+        // Operadores
+        {match: /[+\-*/%]/, 0: "operator"},
+        {match: /==|!=|<=|>=|<|>/, 0: "operator"},
+        {match: /=/, 0: "operator"},
+        
+        // Identificadores de função (seguidos de parênteses)
+        {match: /[a-zA-Z_][a-zA-Z0-9_]*(?=\s*\()/, 0: "function"},
+        
+        // Delimitadores
+        {match: /[():,;]/, 0: "bracket"}
+    ]
+}
